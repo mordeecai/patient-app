@@ -7,6 +7,14 @@
     background: #fff;
 }
 
+.welcome {
+  display: block;
+  height: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: large;
+}
+
 #output{
     position: absolute;
     width: 300px;

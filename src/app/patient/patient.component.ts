@@ -48,17 +48,25 @@ patient: Patient;
     console.log("Countries: " + JSON.stringify(this.countries));
   }
 
-  addPatient(): void {
+  public save(): void {
+    if(this.patient) {
+      this.updatePatient();
+    } else {
+      this.addPatient();
+    }
+  }
 
+  addPatient(): void {
+    patient: Patient = new Patient();
+    var firstName = document.getElementById("first-name");
+    patient.firstName = firstName;
+    this.service.savePatient(patient);
   }
 
   updatePatient(): void {
-
-  }
-
-  //reusable for create and update
-  public savePatient(Patient patient): void {
-    this.service.savePatient(patient);
+    var firstName = document.getElementById("first-name");
+    this.patient.firstName = firstName;
+    this.service.savePatient(this.patient);
   }
 
 }

@@ -5,15 +5,15 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class PatientService {
-
-
-  const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
 
   constructor(private http: HttpClient) { }
 
@@ -29,6 +29,7 @@ export class PatientService {
   }
 
   savePatient(Patient patient) : void {
+    console.log("Saving patient!");
     this.http.post<Patient>('http://localhost:8080/patients/save', patient, httpOptions);
   }
 

@@ -6,15 +6,18 @@
           <input name="user" type="text" placeholder="username" id="email">
           <input type="password" placeholder="password" id="password">
           <button class="btn btn-info btn-block login" onclick="login()">Login</button>
+          <button class="btn btn-info btn-block login" onclick="signup()">Sign Up</button>
       </div>
   </div>
 
   <div id="service-page">
+    <div class="welcome" id="welcome"></div>
     <nav>
       <a routerLink="/patient-list">Dashboard</a>
       <a routerLink="/create">Create</a>
       <a onclick="logout()">Logout</a>
     </nav>
+    <div style="height: 25px;"></div>
     <router-outlet></router-outlet>
   </div>
 

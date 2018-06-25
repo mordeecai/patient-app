@@ -1,14 +1,14 @@
 <div class="example-container">
   <mat-form-field>
-    <input matInput placeholder="First Name" value="{{(patient) ? patient.firstName : ''}}">
+    <input matInput placeholder="First Name" value="{{(patient) ? patient.firstName : ''}}" id="first-name">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Last Name" value="{{(patient) ? patient.lastName : ''}}">
+    <input matInput placeholder="Last Name" value="{{(patient) ? patient.lastName : ''}}" id="last-name">
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Contact Number" value="{{(patient) ? patient.contactNumber : ''}}">
+    <input matInput placeholder="Contact Number" value="{{(patient) ? patient.contactNumber : ''}}" id="contact">
   </mat-form-field>
 
   <!-- This is for create-->
@@ -16,18 +16,18 @@
   <ng-template #createBlock>
     <div class="address-layout">
       <mat-form-field>
-        <input matInput placeholder="Address 1" value="">
+        <input matInput placeholder="Address 1" value="" id="add1">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Address 2" value="">
+        <input matInput placeholder="Address 2" value="" id="add2">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="City" value="">
+        <input matInput placeholder="City" value="" id="city">
       </mat-form-field>
 
-      <div *ngIf="countries != undefined">
+      <!--<div *ngIf="countries != undefined">
         <mat-form-field>
           <mat-select placeholder="Country">
             <mat-option *ngFor="let code of Object.keys(countries)" [value]="code">
@@ -35,10 +35,10 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-      </div>
+      </div>-->
 
       <mat-form-field>
-        <input matInput placeholder="Postal Code" value="">
+        <input matInput placeholder="Postal Code" value="" id="postal-code">
       </mat-form-field>
 
     </div>
@@ -48,15 +48,15 @@
   <ng-template #updateBlock>
     <div class="address-layout" #updateBlock *ngFor="let add of patient.addresses">
       <mat-form-field>
-        <input matInput placeholder="Address 1" value="{{add.address1}}">
+        <input matInput placeholder="Address 1" value="{{add.address1}}" id="add1">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Address 2" value="{{add.address2}}">
+        <input matInput placeholder="Address 2" value="{{add.address2}}" id="add2">
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="City" value="{{add.city}}">
+        <input matInput placeholder="City" value="{{add.city}}" id="city">
       </mat-form-field>
 
       <!--<mat-form-field>
@@ -68,7 +68,7 @@
       </mat-form-field>-->
 
       <mat-form-field>
-        <input matInput placeholder="Postal Code" value="{{add.postalCode}}">
+        <input matInput placeholder="Postal Code" value="{{add.postalCode}}" id="postal-code">
       </mat-form-field>
 
     </div>
@@ -79,7 +79,7 @@
   <br/><br/>
 
   <div class="button-layout">
-    <button mat-button class="submit-button">Submit</button>
+    <button mat-button class="submit-button" (click)="save()">Submit</button>
     <button mat-button class="submit-button">Cancel</button>
   </div>
 
