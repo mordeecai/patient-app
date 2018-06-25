@@ -6,6 +6,7 @@ import { PatientComponent } from './patient/patient.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PatientTableComponent } from './patient-table/patient-table.component';
 import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { AppRoutingModule } from './/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/mate
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

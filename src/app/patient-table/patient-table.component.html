@@ -4,7 +4,7 @@
     <!-- Id Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+      <mat-cell *matCellDef="let row"><a routerLink="/patient/{{row.id}}">Edit</a></mat-cell>
     </ng-container>
 
     <!-- Name Column -->
@@ -38,7 +38,7 @@
   <mat-paginator #paginator
     [length]="dataSource.data.length"
     [pageIndex]="0"
-    [pageSize]="50"
-    [pageSizeOptions]="[25, 50, 100, 250]">
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 20, 30, 50]">
   </mat-paginator>
 </div>

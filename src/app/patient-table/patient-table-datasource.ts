@@ -2,7 +2,8 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { Patient } from '../patient/patient'
+import { Patient } from '../patient/patient';
+import { PatientService } from '../patient.service';
 
 // TODO: Replace this with your own data model type
 export interface PatientTableItem {
@@ -11,7 +12,7 @@ export interface PatientTableItem {
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: Patient[] = [
+export const EXAMPLE_DATA: Patient[] = [
   {id: 1, firstName: 'Peter', lastName: 'One', contactNumber: '22334455', active: true, addresses: []},
   {id: 2, firstName: 'Peter', lastName: 'Two', contactNumber: '22334455', active: true, addresses: []},
   {id: 3, firstName: 'Peter', lastName: 'Three', contactNumber: '22334455', active: true, addresses: []},
@@ -50,10 +51,11 @@ const EXAMPLE_DATA: Patient[] = [
  * (including sorting, pagination, and filtering).
  */
 export class PatientTableDataSource extends DataSource<Patient> {
-  data: Patient[] = EXAMPLE_DATA;
+  data: Patient[];
 
-  constructor(private paginator: MatPaginator, private sort: MatSort) {
+  constructor(private paginator: MatPaginator, private sort: MatSort, private service: PatientService) {
     super();
+    service.getPatients().subscribe(patients => this.data = patients);
   }
 
   /**
@@ -105,7 +107,10 @@ export class PatientTableDataSource extends DataSource<Patient> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
+        case 'firstName': return compare(a.firstName, b.firstName, isAsc);
+        case 'lastName': return compare(a.lastName, b.lastName, isAsc);
+        case 'contactNumber': return compare(a.contactNumber, b.contactNumber, isAsc);
+        case 'status': return compare(a.active, b.active, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
         default: return 0;
       }

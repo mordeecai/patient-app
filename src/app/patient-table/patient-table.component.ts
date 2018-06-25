@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { PatientTableDataSource } from './patient-table-datasource';
+import { PatientService } from '../patient.service'
 
 @Component({
   selector: 'patient-table',
@@ -12,10 +13,12 @@ export class PatientTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataSource: PatientTableDataSource;
 
+  constructor(private service : PatientService) { }
+
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'firstName', 'lastName', 'contactNumber', 'status'];
 
   ngOnInit() {
-    this.dataSource = new PatientTableDataSource(this.paginator, this.sort);
+    this.dataSource = new PatientTableDataSource(this.paginator, this.sort, this.service);
   }
 }
