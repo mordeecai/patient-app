@@ -1,0 +1,25 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-layout {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.address-layout {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.example-container > * {
+  width: 75%;
+}
+
+.submit-button {
+  display: block;
+  width: 25%;
+}

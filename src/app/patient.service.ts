@@ -10,10 +10,30 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class PatientService {
 
+
+  const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   constructor(private http: HttpClient) { }
 
   getPatients() : Observable<Patient[]> {
     return this.http.get<Patient[]>('http://localhost:8080/patients/find');
+  }
+
+  getPatient(id: number) : Observable<Patient> {
+    console.log("getPatient() id: " + id);
+    let url = `http://localhost:8080/patients/${id}`;
+    console.log("getPatient() url: " + url);
+    return this.http.get<Patient>(url);
+  }
+
+  savePatient(Patient patient) : void {
+    this.http.post<Patient>('http://localhost:8080/patients/save', patient, httpOptions);
+  }
+
+  getCountries() : Observable<any[]> {
+    return this.http.get<any>('http://localhost:8080/patients/countries');
   }
 
   handlePromiseError(error: Response) {

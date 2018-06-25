@@ -5,7 +5,8 @@ import { AppComponent } from './app.component';
 import { PatientComponent } from './patient/patient.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PatientTableComponent } from './patient-table/patient-table.component';
-import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+//import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { CustomMaterialModule } from './custom-material.module';
 import { AppRoutingModule } from './/app-routing.module';
 import { HttpModule } from '@angular/http'
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -19,9 +20,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
+    CustomMaterialModule,
     AppRoutingModule,
     HttpModule,
     HttpClientModule
