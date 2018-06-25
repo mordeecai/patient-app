@@ -11,51 +11,19 @@ export interface PatientTableItem {
   id: number;
 }
 
-// TODO: replace this with real data from your application
-export const EXAMPLE_DATA: Patient[] = [
-  {id: 1, firstName: 'Peter', lastName: 'One', contactNumber: '22334455', active: true, addresses: []},
-  {id: 2, firstName: 'Peter', lastName: 'Two', contactNumber: '22334455', active: true, addresses: []},
-  {id: 3, firstName: 'Peter', lastName: 'Three', contactNumber: '22334455', active: true, addresses: []},
-  {id: 4, firstName: 'Peter', lastName: 'Four', contactNumber: '22334455', active: true, addresses: []},
-  {id: 5, firstName: 'Peter', lastName: 'Five', contactNumber: '22334455', active: true, addresses: []},
-  {id: 6, firstName: 'Peter', lastName: 'Six', contactNumber: '22334455', active: true, addresses: []},
-  {id: 7, firstName: 'Peter', lastName: 'Seven', contactNumber: '22334455', active: true, addresses: []},
-  {id: 8, firstName: 'Peter', lastName: 'Eight', contactNumber: '22334455', active: true, addresses: []},
-  {id: 9, firstName: 'Peter', lastName: 'Nine', contactNumber: '22334455', active: true, addresses: []},
-  {id: 10, firstName: 'Peter', lastName: 'Ten', contactNumber: '22334455', active: true, addresses: []},
-  {id: 11, firstName: 'James', lastName: 'One', contactNumber: '22334455', active: true, addresses: []},
-  {id: 12, firstName: 'James', lastName: 'Two', contactNumber: '22334455', active: true, addresses: []},
-  {id: 13, firstName: 'James', lastName: 'Three', contactNumber: '22334455', active: true, addresses: []},
-  {id: 14, firstName: 'James', lastName: 'Four', contactNumber: '22334455', active: true, addresses: []},
-  {id: 15, firstName: 'James', lastName: 'Five', contactNumber: '22334455', active: true, addresses: []},
-  {id: 16, firstName: 'James', lastName: 'Six', contactNumber: '22334455', active: true, addresses: []},
-  {id: 17, firstName: 'James', lastName: 'Seven', contactNumber: '22334455', active: true, addresses: []},
-  {id: 18, firstName: 'James', lastName: 'Eight', contactNumber: '22334455', active: true, addresses: []},
-  {id: 19, firstName: 'James', lastName: 'Nine', contactNumber: '22334455', active: true, addresses: []},
-  {id: 20, firstName: 'James', lastName: 'Ten', contactNumber: '22334455', active: true, addresses: []},
-  {id: 21, firstName: 'Abraham', lastName: 'One', contactNumber: '22334455', active: true, addresses: []},
-  {id: 22, firstName: 'Abraham', lastName: 'Two', contactNumber: '22334455', active: true, addresses: []},
-  {id: 23, firstName: 'Abraham', lastName: 'Three', contactNumber: '22334455', active: true, addresses: []},
-  {id: 24, firstName: 'Abraham', lastName: 'Four', contactNumber: '22334455', active: true, addresses: []},
-  {id: 25, firstName: 'Abraham', lastName: 'Five', contactNumber: '22334455', active: true, addresses: []},
-  {id: 26, firstName: 'Abraham', lastName: 'Six', contactNumber: '22334455', active: true, addresses: []},
-  {id: 27, firstName: 'Abraham', lastName: 'Seven', contactNumber: '22334455', active: true, addresses: []},
-  {id: 28, firstName: 'Abraham', lastName: 'Eight', contactNumber: '22334455', active: true, addresses: []},
-  {id: 29, firstName: 'Abraham', lastName: 'Nine', contactNumber: '22334455', active: true, addresses: []},
-  {id: 30, firstName: 'Abraham', lastName: 'Ten', contactNumber: '22334455', active: true, addresses: []}
-];
-
 /**
  * Data source for the PatientTable view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
 export class PatientTableDataSource extends DataSource<Patient> {
-  data: Patient[];
+  data: Patient[] = [];
 
-  constructor(private paginator: MatPaginator, private sort: MatSort, private service: PatientService) {
+  constructor(private paginator: MatPaginator, private sort: MatSort, private patientList: Patient[]) {
     super();
-    service.getPatients().subscribe(patients => this.data = patients);
+    if(patientList.length) {
+      this.data = patientList;
+    }
   }
 
   /**

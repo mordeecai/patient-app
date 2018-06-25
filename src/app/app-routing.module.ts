@@ -5,7 +5,7 @@ import { PatientComponent } from './patient/patient.component'
 import { PatientTableComponent } from './patient-table/patient-table.component'
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/patient-list', pathMatch: 'full' },
   { path: 'patient-list', component: PatientTableComponent },
   { path: 'create', component: PatientComponent },
   { path: 'patient/:id', component: PatientComponent }
