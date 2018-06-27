@@ -29,10 +29,11 @@ a.table-button {
   display: inline-block;
   background-color: #115EDB;
   border-radius: 4px;
+  color: #FFFFFF;
 }
 
-.table-button a:visited, a:link {
-  color: #115EDB;
+ a.table-button:visited, a.table-button:link {
+  color: #FFFFFF;
 }
 
 .table-button a.active {

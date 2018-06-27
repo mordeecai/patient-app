@@ -20,6 +20,10 @@ export class PatientService {
     return this.http.get<Patient[]>('http://localhost:8080/patients/find');
   }
 
+  searchPatients(search: string) : Observable<Patient[]> {
+    return this.http.get<Patient[]>(`http://localhost:8080/patients/find?query=${search}`);
+  }
+
   getPatient(id: number) : Observable<Patient> {
     console.log("getPatient() id: " + id);
     let url = `http://localhost:8080/patients/${id}`;
@@ -28,10 +32,10 @@ export class PatientService {
   }
 
   savePatient(patient: Patient) : void {
-    console.log("Saving patient!");
+    console.log("Saving patient: " + JSON.stringify(patient));
     this.http.post<Patient>('http://localhost:8080/patients/save', patient, httpOptions).pipe(
-      tap(_ => this.log(`found patient matching`))
-      catchError(this.handleError<Hero[]>('searchHeroes', []))
+      tap((p: Patient) => this.log(`Saving patient ${p.firstName}`))
+      catchError(this.handleError<Patient>('savePatient', patient))
     );
   }
 

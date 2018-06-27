@@ -29,4 +29,17 @@ export class PatientTableComponent implements OnInit {
       this.dataLength = (response) ? response.length : 0;
     });
   }
+
+  searchPatients(query: string) {
+    this.service.searchPatients(query).subscribe((response) => {
+      this.dataSource = new PatientTableDataSource(this.paginator, this.sort, response);
+      this.dataIsReady = true;
+      this.dataLength = (response) ? response.length : 0;
+    });
+  }
+
+  search() {
+    var query = document.getElementById("search-query").value;
+    this.searchPatients(query);
+  }
 }

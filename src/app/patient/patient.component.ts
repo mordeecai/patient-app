@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../patient.service';
 import { Patient } from './patient';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient',
@@ -16,7 +16,8 @@ patient: Patient;
 
   constructor(
     private service : PatientService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     this.getPatient();
@@ -57,16 +58,20 @@ patient: Patient;
   }
 
   addPatient(): void {
-    patient: Patient = new Patient();
-    var firstName = document.getElementById("first-name");
+    var patient: Patient = new Patient();
+    var firstName = document.getElementById("first-name").value;
     patient.firstName = firstName;
     this.service.savePatient(patient);
   }
 
   updatePatient(): void {
-    var firstName = document.getElementById("first-name");
+    var firstName = document.getElementById("first-name").value;
     this.patient.firstName = firstName;
     this.service.savePatient(this.patient);
+  }
+
+  cancel(): void {
+    this.router.navigateByUrl('/patient-list');
   }
 
 }
