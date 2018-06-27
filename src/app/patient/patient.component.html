@@ -74,7 +74,9 @@
     </div>
   </ng-template>
 
-  <mat-checkbox>Active</mat-checkbox>
+  <div style="display: flex; flex-direction: row;">
+    <input type="checkbox" id="active"/>&nbsp;Active
+  </div>
 
   <br/><br/>
 
@@ -82,5 +84,4 @@
     <button mat-button class="submit-button" (click)="save()">Submit</button>
     <button mat-button class="submit-button" (click)="cancel()">Cancel</button>
   </div>
-
 </div>

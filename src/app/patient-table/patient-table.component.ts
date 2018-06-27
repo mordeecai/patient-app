@@ -17,7 +17,7 @@ export class PatientTableComponent implements OnInit {
   constructor(private service : PatientService) { }
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'firstName', 'lastName', 'contactNumber', 'status'];
+  displayedColumns = ['id', 'firstName', 'lastName', 'contactNumber', 'status', 'action'];
   data: Patient[] = [];
   dataIsReady: boolean = false;
   dataLength: number = 0;
@@ -26,6 +26,10 @@ export class PatientTableComponent implements OnInit {
   isSearchFreeText: boolean = true;
 
   ngOnInit() {
+    this.initTable();
+  }
+
+  initTable() {
     this.service.getPatients().subscribe((response) => {
       this.dataSource = new PatientTableDataSource(this.paginator, this.sort, response);
       this.dataIsReady = true;
@@ -53,5 +57,16 @@ export class PatientTableComponent implements OnInit {
 
   changeSearchType() {
     this.isSearchFreeText = (<HTMLInputElement>document.getElementById("search-type-text")).checked;
+  }
+
+  delete(id: number) {
+    this.service.deletePatient(id).subscribe(() => {
+      alert(`Patient with id ${id} is deleted.`);
+      this.refreshTable()
+    });
+  }
+
+  refreshTable() {
+    this.initTable();
   }
 }

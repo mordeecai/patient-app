@@ -29,12 +29,17 @@ export class PatientService {
     return this.http.get<Patient>(url);
   }
 
-  savePatient(patient: Patient) : void {
+  savePatient(patient: Patient) : Observable<Patient> {
     console.log("Saving patient: " + JSON.stringify(patient));
-    this.http.post<Patient>('http://localhost:8080/patients/save', patient, httpOptions).pipe(
+    return this.http.post<Patient>('http://localhost:8080/patients/save', patient, httpOptions).pipe(
       tap((p: Patient) => this.log(`Saving patient ${p.firstName}`)),
       catchError(this.handleError<Patient>('savePatient', patient))
     );
+  }
+
+  deletePatient(id: number) : Observable<any> {
+    let url = `http://localhost:8080/patients/${id}`;
+    return this.http.delete(url);
   }
 
   getCountries() : Observable<any[]> {

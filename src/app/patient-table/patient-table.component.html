@@ -11,10 +11,10 @@
   <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
 
     <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-      <mat-cell *matCellDef="let row"><a class="table-button" routerLink="/patient/{{row.id}}">Edit</a></mat-cell>
-    </ng-container>
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+  </ng-container>
 
     <!-- First Name Column -->
     <ng-container matColumnDef="firstName">
@@ -38,6 +38,15 @@
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.active ? 'Active' : 'Inactive'}}</mat-cell>
+    </ng-container>
+
+      <!-- Id Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <a class="table-button" routerLink="/patient/{{row.id}}">Edit</a>&nbsp;
+        <a class="table-button" (click)="delete(row.id)">Delete</a>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
