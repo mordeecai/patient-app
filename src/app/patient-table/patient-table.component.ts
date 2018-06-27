@@ -21,6 +21,9 @@ export class PatientTableComponent implements OnInit {
   data: Patient[] = [];
   dataIsReady: boolean = false;
   dataLength: number = 0;
+  const SEARCH_TEXT: string = "search-text";
+  const SEARCH_COUNTRY: string = "country";
+  isSearchFreeText: boolean = true;
 
   ngOnInit() {
     this.service.getPatients().subscribe((response) => {
@@ -41,5 +44,9 @@ export class PatientTableComponent implements OnInit {
   search() {
     var query = document.getElementById("search-query").value;
     this.searchPatients(query);
+  }
+
+  changeSearchType() {
+    this.isSearchFreeText = document.getElementById("search-type-text").checked;
   }
 }

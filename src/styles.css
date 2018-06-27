@@ -21,25 +21,6 @@ button:disabled {
   cursor: auto;
 }
 
-a.table-button {
-  padding: 5px 10px;
-  text-decoration: none;
-  margin-right: 10px;
-  margin-top: 10px;
-  display: inline-block;
-  background-color: #115EDB;
-  border-radius: 4px;
-  color: #FFFFFF;
-}
-
- a.table-button:visited, a.table-button:link {
-  color: #FFFFFF;
-}
-
-.table-button a.active {
-  color: #FFFFFF;
-}
-
 /* Navigation link styles */
 nav a {
   padding: 5px 10px;
