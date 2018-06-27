@@ -12,7 +12,6 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-
 export class PatientService {
 
   constructor(private http: HttpClient) { }
@@ -28,9 +27,12 @@ export class PatientService {
     return this.http.get<Patient>(url);
   }
 
-  savePatient(Patient patient) : void {
+  savePatient(patient: Patient) : void {
     console.log("Saving patient!");
-    this.http.post<Patient>('http://localhost:8080/patients/save', patient, httpOptions);
+    this.http.post<Patient>('http://localhost:8080/patients/save', patient, httpOptions).pipe(
+      tap(_ => this.log(`found patient matching`))
+      catchError(this.handleError<Hero[]>('searchHeroes', []))
+    );
   }
 
   getCountries() : Observable<any[]> {
