@@ -25,16 +25,14 @@ export class PatientService {
   }
 
   getPatient(id: number) : Observable<Patient> {
-    console.log("getPatient() id: " + id);
     let url = `http://localhost:8080/patients/${id}`;
-    console.log("getPatient() url: " + url);
     return this.http.get<Patient>(url);
   }
 
   savePatient(patient: Patient) : void {
     console.log("Saving patient: " + JSON.stringify(patient));
     this.http.post<Patient>('http://localhost:8080/patients/save', patient, httpOptions).pipe(
-      tap((p: Patient) => this.log(`Saving patient ${p.firstName}`))
+      tap((p: Patient) => this.log(`Saving patient ${p.firstName}`)),
       catchError(this.handleError<Patient>('savePatient', patient))
     );
   }

@@ -1,6 +1,6 @@
 <div class="search-section">
-  <input *ngIf="isSearchFreeText" placeholder="Search Text" value="" id="search-query">
-  <input *ngIf="!isSearchFreeText" placeholder="Search Country" value="" id="search-country">&nbsp;
+  <input *ngIf="isSearchFreeText" placeholder="Search Text" value="" id="search-query"/>
+  <input *ngIf="!isSearchFreeText" placeholder="Search Country" value="" id="search-country"/>&nbsp;
   <a class="table-button" (click)="search()">Search</a>
   <input type="radio" id="search-type-text" name="search-type" value="{{SEARCH_TEXT}}" checked (click)="changeSearchType()"/> Search Text
   &nbsp;&nbsp;&nbsp;

@@ -41,9 +41,7 @@ patient: Patient;
         //console.log("key: " + key);
       });
 
-      if(this.codes.length > 0) {
-        this.dataReady = 0;
-      }
+      this.dataReady = (this.codes.length > 0);
     });
 
     console.log("Countries: " + JSON.stringify(this.countries));
@@ -59,14 +57,23 @@ patient: Patient;
 
   addPatient(): void {
     var patient: Patient = new Patient();
-    var firstName = document.getElementById("first-name").value;
+    var firstName = (<HTMLInputElement>document.getElementById("first-name")).value;
+    var lastName = (<HTMLInputElement>document.getElementById("last-name")).value;
+    var contact = (<HTMLInputElement>document.getElementById("contact-number")).value;
+    patient.firstName = firstName;
+    patient.lastName = lastName;
+    patient.contactNumber = contact
     patient.firstName = firstName;
     this.service.savePatient(patient);
   }
 
   updatePatient(): void {
-    var firstName = document.getElementById("first-name").value;
+    var firstName = (<HTMLInputElement>document.getElementById("first-name")).value;
+    var lastName = (<HTMLInputElement>document.getElementById("last-name")).value;
+    var contact = (<HTMLInputElement>document.getElementById("contact-number")).value;
     this.patient.firstName = firstName;
+    this.patient.lastName = lastName;
+    this.patient.contactNumber = contact;
     this.service.savePatient(this.patient);
   }
 
